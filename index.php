@@ -1,4 +1,5 @@
 <?php
+
 require 'currency.php';
 
 $currency=new Currency();

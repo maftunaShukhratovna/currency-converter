@@ -82,15 +82,15 @@
                 </div>
             </div>
             <p class="rate-info mt-2">
-                <?php
-                $input=$_GET['amount'];
-
-                $results=$currencies[$_GET['from']]/$currencies[$_GET['to']];
-                $result=$input*$results;
-                $result=round($result,4);
-                echo $input." ".$_GET['from']." = ".$result." ".$_GET['to'];
-                ?> 
-
+            <?php
+                if (isset($_GET['amount']) && isset($_GET['from']) && isset($_GET['to'])) {
+                    $input = $_GET['amount'];
+                    $results = $currencies[$_GET['from']] / $currencies[$_GET['to']];
+                    $result = $input * $results;
+                    $result = round($result, 4);
+                    echo $input . " " . $_GET['from'] . " = " . $result . " " . $_GET['to'];
+                }
+            ?>  
                 <i class="bi bi-info-circle"></i>
             </p>
             <button type="submit" class="btn btn-primary btn-primary-custom mt-3">Convert</button>
