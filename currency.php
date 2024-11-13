@@ -1,6 +1,7 @@
 <?php
     class Currency {
         const CURRENCY_API_URL="https://cbu.uz/uz/arkhiv-kursov-valyut/json/";
+        public array $currencies=array();
 
         public function __construct(){
             $ch=curl_init();
@@ -10,9 +11,24 @@
             $output=curl_exec($ch);
             curl_close($ch);
 
-            $decoded=json_decode($output);
+            $this->currencies=json_decode($output);
 
-            echo $decoded[0]->Ccy;
+        }   
+
+        public function getCurrencies(){
+            $separated_data=array();
+
+            $currencies_info=$this->currencies;
+            $separated_data['UZS']=1;
+            foreach($currencies_info as $currency){
+                $separated_data[$currency->Ccy]=$currency->Rate;
+            }
+            return $separated_data;
+        }
+
+        public function exchange($value,$currency_name='USD'){
+    
+            echo ceil($value/$this->getCurrencies()[$currency_name]).''.$currency_name;
         }
     }
 ?>
