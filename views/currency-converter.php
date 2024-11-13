@@ -45,11 +45,10 @@
             <div class="row g-3 align-items-center">
                 <div class="col-md-5">
                     <label for="amount" class="form-label visually-hidden">Amount</label>
-                    <input type="number" id="amount" class="form-control" placeholder="Amount" value="10000">
+                    <input type="number" name="amount" id="amount" class="form-control" placeholder="Amount" value="10000">
                 </div>
                 <div class="col-md-3 text-center">
                     <select class="form-select" name="from">
-                    <option value="UZS">UZS</option>
                         <?php
                         global $currencies;
                         $counter=0;
@@ -68,7 +67,6 @@
                 </div>
                 <div class="col-md-3">
                     <select class="form-select" name="to">
-                        <option value="UZS">UZS</option>
                         <?php
                         global $currencies;
                         $counter= 0;
@@ -83,15 +81,14 @@
                     </select>
                 </div>
             </div>
-            <p class="rate-info mt-2">1
-
+            <p class="rate-info mt-2">
                 <?php
-                //$selected_from=isset($_POST['from']);
-                //$selected_to=isset($_POST['to']);
+                $input=$_GET['amount'];
 
                 $results=$currencies[$_GET['from']]/$currencies[$_GET['to']];
-                $results=round( $results,2);
-                echo $_GET['from']." = ".$results." ".$_GET['to'];
+                $result=$input*$results;
+                $result=round($result,4);
+                echo $input." ".$_GET['from']." = ".$result." ".$_GET['to'];
                 ?> 
 
                 <i class="bi bi-info-circle"></i>
