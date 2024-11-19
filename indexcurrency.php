@@ -1,6 +1,6 @@
 <?php
 
-require 'currency.php';
+require 'source/currency.php';
 
 $currency=new Currency();
 
