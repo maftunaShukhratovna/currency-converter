@@ -20,12 +20,11 @@ if (isset($update['message'])) {
         $currency = new Currency();
         $currencies = $currency->getCurrencies();
 
-        $response = "Valyuta kurslari (UZS ga nisbatan):\n";
+        $response = "Valyuta kurslari \n";
         $counter = 0;
         foreach ($currencies as $key => $rate) {
             if ($counter >= 10) break; 
-            echo "1 ";
-            $response .= $key . ": " . round($rate, 2) . "\n";
+            $response .= "1 ". $key . ": " . round($rate, 2) . " sum \n";
             $counter++;
         }
         $bot->sendMessage($chatId, $response);
@@ -41,6 +40,6 @@ if (isset($update['message'])) {
         $response .= "Shamol: " . $weatherInfo['current']['wind_speed_kph'] . " kph\n";
         $bot->sendMessage($chatId, $response);
     } else {
-        $bot->sendMessage($chatId, "Kechirasiz, men sizni tushunmadim. Iltimos, /start buyrug'ini yuboring.");
+        $bot->sendMessage($chatId, "bot ishlamayapti");
     }
 }
